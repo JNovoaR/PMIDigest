@@ -55,7 +55,7 @@ You can add articles from as many other sources as you want (such as Scopus or W
 
 For example, to generate the example included in the documentation use the following command line:
 
-	perl PMIDigest.pl example_PMIDs.txt example_mesh_colors your@email.com example_WoS.xml example_scopus.xml -v >Food_additives.html
+	perl PMIDigest.pl example_PMIDs.txt example_mesh_colors your@email.com example_WoS.xml example_scopus.xml -v >FoodAdditives.html
 
 This command line will generate this example report http://csbg.cnb.csic.es/jnovoa/PMIDigest/example/FoodAdditives.html.
 
