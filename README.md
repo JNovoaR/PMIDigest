@@ -1,8 +1,8 @@
 # PMIDigest
 
-PMIDigest generates an interface designed for an easier and more comprehensive exploration of a set of publications from PubMed or other sources. It allows revising the articles sorting them by different criteria, classifying in subgroups, highlighting important information or exploring their citation network, among other things.
+PMIDigest helps summarizing and digesting large sets of publications from PubMed or other sources. It generates an interactive web report which allows revising the articles sorting them by different criteria, classifying in subgroups, highlighting important information or exploring their citation network, among other things.
 
-PMIDigest creates an .html file (meant to be run locally on your web browser) by running a script from the command shell.
+From the input set of articles, PMIDigest creates a local .html file that can be interatively visualizal with a web browser.
 
 ## 1.- How to use PMIDigest? Step by step guide
 
@@ -10,55 +10,60 @@ PMIDigest creates an .html file (meant to be run locally on your web browser) by
 
 #### Requirements:
 
-You can run PMIDigest on Windows, Linux or Mac, with the following requirements:
-- PERL must be installed on your computer.
-- WGET must be installed on your computer.
+You can install run PMIDigest on Windows, Linux or Mac, with the following requirements:
+- PERL must be installed on your computer (https://www.perl.org/).
+- WGET must be installed on your computer (https://www.gnu.org/software/wget/).
 
 #### Download PMIDigest:
 
-Download PMIDigest folder (for example, by downloading the .zip and extracting it). **Make sure to never move or delete folders and files inside PMIDigest directory or you may experience some problems.**
+Download the PMIDigest folder to your computer (for example, by downloading the .zip and extracting it). **Make sure to never move or delete folders and files inside PMIDigest directory or you may experience some problems.**
 
 #### Download MESH database:
 - Go to https://nlmpubs.nlm.nih.gov/projects/mesh/MESH_FILES/asciimesh/ and download "d2023.bin" (or its latest version).
 - Change the name of this file to "mesh.bin". **Make sure it's lowercased.**
 - Place "mesh.bin" inside the "auxiliar_files" folder.
 
-### 1.2.- Choose a list of papers you want to explore
+### 1.2.- Retrive the list(s) of papers you want to explore
 
-You must have a list of PubMed papers you wat to explore. This must be a plain text file with a PMID (PubMed identifier) on each line. One of the main ways you can use to generate this list is by using the "Save" option in the Pubmed browser (select "PMID" as format).
+You must have a list of PubMed papers you want to explore. This must be a plain text file with a PMID (PubMed identifier) on each line. To generate this list at PubMed’s web interface, for example from a search in PubMed’s search engine (https://pubmed.ncbi.nlm.nih.gov/), use the "Save" option and "PMID" as format.
 
-An example of this file is included in the repository under the name "example_PMIDs".
+An example of this file is included in the repository ("example_PMIDs").
 
-**Note:** Avoid making this list too long. Besides making it infeasible to explore by the user, it can slow down the interface.
 
 ### 1.3.- Choose the mesh terms you want to highlight
 
 One of the functionalities of PMIDigest is to highlight certain mesh terms relevant for you in your set of paper. This is meant to ease your exploration and give tools to identify relevant information (to learn more, go to "2.2.- Details" and "2.3.- Mesh terms"). 
 
-For that purpose, you can select different categories of mesh terms (technically called "semantic types") and associate them to different colors. All words belonging to given category will be highlighted in that color. Lets say you want all words that refer to biological tissues to be highlighted. First, find in the NCBI mesh semantic type (link: https://lhncbc.nlm.nih.gov/ii/tools/MetaMap/Docs/SemGroups_2018.txt) list which category you are interested in. In this case "T024" ("Tissue"). Then, select any color by its color code (RGB, HEX, HSL, RGBA, or HSLA) or by simple color names such as "blue", "green", "red", "yellow", etc. Create a plain text file in which each line is a semantic type ID ("TXXX") and a color separated by a tabulation. You can associate the same color to different categories.
+For that purpose, you can select the categories of mesh terms (technically called "semantic types") you are interested in and associate them to different colors. All terms belonging to given category will be highlighted in that color. Lets say you want all keywords that refer to biological tissues to be highlighted. First, locate that category in the NCBI mesh semantic type (link: https://lhncbc.nlm.nih.gov/ii/tools/MetaMap/Docs/SemGroups_2018.txt). In this case "T024" ("Tissue"). Then, select any color by its color code (RGB, HEX). Create a plain text file in which each line is a semantic type ID ("TXXX") and its associated color separated by a tabulation. You can associate the same color to different categories.
 
-An example of this file is included in the repository under the name "example_mesh_colors".
+An example of such file is included in the repository ("example_mesh_colors").
 
 ### 1.4.- Run PMIDigest.pl
 Run in a command shell PMIDigest.pl script with the following command:
 
 	perl PMIDigest.pl your_PMIDs your_mesh_colors your_EMAIL >your_interface.html
 
-Choose whatever name you want as "your_interface.html" as long as it has .html extension. Your email is necessary for the NCBI requests to download the abstracts.
+Choose whatever name you want as "your_interface.html" as long as it has .html extension. Your email is necessary for performing the NCBI's API.
 
-The execution should take a while. Run the following command instead if you want the program to inform you about the progress:
+The execution could take a while. Add the “-v” command line option at the end in order to follow the progress:
 
 	perl PMIDigest.plyour_PMIDs your_mesh_colors your_EMAIL -v >your_interface.html
 
-You can add articles from as many other sources as you want (such as Scopus or Web of Science), by imputing additional .xml files to the command line as followed. You can check which fields need to be included on these files by checking on the example ones on this repository ("example_WoS.xml" and "example_Scopus").
+You can add articles from as many other sources as you want (such as Scopus or Web of Science), by imputing additional .xml files to the command line shown below. You can check which fields need to be included on these files by checking on the example ones on this repository ("example_WoS.xml" and "example_Scopus").
 
-	perl PMIDigest.pl your_PMIDs your_mesh_colors your_EMAIL your_Scopus your_WoS ... >your_interface.html
+	perl PMIDigest.pl your_PMIDs your_mesh_colors your_EMAIL your_Scopus.xml your_WoS.xml ... >your_interface.html
+
+For example, to generate the example included in the documentation use the following command line:
+
+	perl PMIDigest.pl example_PMIDs.txt example_mesh_colors your@email.com example_WoS.xml example_scopus.xml -v >Food_additives.html
+
+This command line will generate this example report http://csbg.cnb.csic.es/jnovoa/PMIDigest/example/FoodAdditives.html.
 
 ### 1.5.- PMIDigest is ready to use
 Open your new HTML file with your web browser of preference and start using it. Go to "2.- Sections" and "3.- Operations with articles" to learn about PMIDigest functionalities.
 
 ### 1.6.- Don't forget to save changes.
-Use your web browser "Save page" functionality to save the current work session as a HTML file in the work folder. Select "web page, HTML only" option if available. For example, in Firefox, go to "Menu > Save page as" and make sure the "Web Page, HTML only" option is selected. **Make sure you are saving your .html file inside the PMIDigest folder, this file rely on other files from this folder to work as expected**
+Use your web browser "Save page" functionality to save the current work session as a HTML file in the work folder. Select "web page, HTML only" option if available. For example, in Firefox, go to "Menu > Save page as" and make sure the "Web Page, HTML only" option is selected. **Make sure you are saving your .html file inside the PMIDigest folder, as this file requires other files from this folder to work.**
 
 To recover a saved session, just open the corresponding HTML file again.
 ## 2.- Interface sections
@@ -93,7 +98,7 @@ _(top-right)_
 
 This section displays the title and abstract of the selected paper.
 
-Relevant MeSH terms are highlighted coloring them according with the schema speified by the user. Additionally generic terms of interest (either belonging to the MeSH vocabulary or not) can be entered dinamically by the user and they will be highlighted in **purple**. (See "3.3.- Enter new highlighted terms" below).
+Relevant MeSH terms are highlighted coloring them according with the schema specified by the user (see above). Additionally generic terms of interest (either belonging to the MeSH vocabulary or not) can be entered by the user and they will be highlighted in **purple**. (See "3.3.- Enter new highlighted terms" below).
 
 Although MeSH terms are only associated to PubMed articles, instances of them mentioned in articles from other sources are also highlighted. Similarly, for a particular PubMed entry, all mentions in its title/abstract of any MeSH of the whole set are highlighted, irrespective of whether they are indexed for that particular article or not.
 
@@ -109,7 +114,7 @@ Mesh terms are sorted by their frequencies in the set of articles where they are
 
 -   **Mesh term ID**, linked to its Entrez page. For user-introduced terms, an internal, not linked, ID is generated.
 -   **Term name**, colored according with the criteria described above.
--   **Links to other resources**, only for microorganisms terms, (link to the corresponding NCBI Taxonomy page) and for chemical compounds terms (links to different databases with chemical information). Empty in other cases.
+-   **Links to other resources**, only for microorganisms (link to the corresponding NCBI Taxonomy page) and for chemical compounds terms (links to different databases with chemical information). **Empty in other cases.**
 -   **Frequency of the term**.
 -   **List of papers that include this term**. Click on \[+PMIDs\] to display the complete list and click on \[-pmids\] to collapse it back. Click in any paper ID from the list to show its details in the Details section (see above).
 
@@ -121,9 +126,11 @@ This section shows the network of internal citations between the papers.
 
 Each node represents a paper and each arrow a citation, going from the citing paper to the cited paper. Nodes are colored by the number of internal citations received, from **dark blue** (less) to **yellow** (more). Papers that don't participate in any internal citation (either citing or getting cited) are not included in the network.
 
-Use the mouse wheel to zoom in or out the network. Drag the mouse in the background (outside any node) to pan/move the representation. It is possible to move the nodes to different places dragging them with the mouse.
+Use the mouse wheel to zoom in or out the network. Drag the mouse in the background (outside any node) to pan/move the representation. It is possible to move the nodes to different places dragging them with the mouse. To select a bunch of nodes (e.g. to move them together) draw a box around them dragging the mouse with SHIFT pressed.
 
 You can **left-click** on any node to show the details of the corresponding paper on the Details section (see above). Selected nodes, whose details are shown in the Details Box, are circled in **pink** . You can **right-click** on any node to highlight its connections: **blue** for incoming citations and **red** for outgoing citations. Left-click in any part of the network to undo the highlighting.
+
+It is possible to change the layout of the network (placement of nodes) with the “[+]” menu. Some layouts could slow down the interface when the network is really big.
 
 ## 3.- Operations with articles
 
@@ -132,7 +139,7 @@ You can **left-click** on any node to show the details of the corresponding pape
 This functionality allows the user to assign tags to papers. These will be shown in the "Tag" field of the Article List. To tag papers select one or more items from the Article List by checking the corresponding box(es) in the "Sel." column. Then you can either tag these articles as important or use custom tags:
 
 -   Press **"Tag as Imp."** to tag the selected articles as important (Imp.). Rows tagged this way are highlighted with a green background.
--   Press **"Other tags"** to use custom tags. You can enter a name for a new tag in the text box and press the "Tag selection" button to tag selected papers with it. Whenever a new tag is added in this way, it appears in the list of previously created tags and you can select it and press the bottom "Tag selection" button to reuse it in forthcoming tag assignments. Press "Clear" to delete the tag list.
+-   Press **"Other tags"** to use custom tags. You can enter a name for a new tag in the text box and press the "Tag selection" button to tag selected papers with it. Whenever a new tag is added in this way, it appears in the list of previously created tags and you can select it and press the bottom "Tag selection" button to reuse it in forthcoming tag assignments. **Press "Clear" to delete the tag list.**
 -   Press **"Untag"** to delete the tags for the selected papers.
 
 **Note:** You can click in the "Tag" header from the papers table to sort the papers by tag.
@@ -145,7 +152,7 @@ First, select the paper(s) you want to delete by checking the corresponding box(
 
 ### 3.3- Enter new highlighted terms
 
-This tool allows the user to enter new terms that will be highlighted in **purple**.
+This function allows the user to enter new terms that will be highlighted in **purple**.
 
 For that, press **"Enter new terms"** to display a new dialog box and there, write the new terms in the text box. You can enter them one by one, pressing "Add" after writing each of the new terms, or you can enter many at once, separated by ";". You can also delete the list of user terms by pressing "Clear". After making all the changes (either adding or deleting), **you must press "Save changes"**.
 
