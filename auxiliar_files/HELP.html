@@ -1,0 +1,233 @@
+<html>
+<title>HELP - PMID digest</title>
+<style>
+body {
+	margin-top: 2vh;
+	margin-right: 25%;
+	margin-left: 25%; 
+	text-align: justify;
+  text-justify: inter-word;
+  font-size: 110%;
+
+}
+</style>
+<body>
+
+<p>
+This interface is designed for an easier and more comprehensive exploration of a
+set of publications from PubMed or other sources. 
+It allows revising the articles sorting them by different
+criteria, classifying in subgroups, highlighting important information or exploring their citation network, among
+other things.
+</p>
+
+<!--
+To know more about the four different sections of the interface go to "Sections".
+To know more about the different functionalities avaiable to the user go to
+"Tools".
+-->
+
+<h1>Sections</h1>
+
+<p>
+The interface is divided in four main sections:
+</p>
+
+
+<h2>ARTICLE LIST</h2> <p><i>(top-left)</i></p>
+
+<p>
+The table lists all papers within the set, one per row. Click on any row to display the 
+details for this paper in the "Details" section (see below). The fields (columns) are:
+<p>
+
+<ul>
+<li> 	<b>"Ref. PMID"</b>: Reference (Authors. Journal. (Year). Volume (Issue): Pages) and 
+ 	 article identifier (e.g. PubMed ID for PubMed entries). 
+ 	 Click on the ID to go to the paper's full record in the corresponding resource.
+ 	 <!-- Some non-PubMed papers may not have an avaiable link.-->
+<li>	<b>"Source"</b>: Database from which the article was obtained. PM stands for PubMed.
+<li>	<b>"Type"</b>: Publication type:
+	<ul>
+ 	<li>	<font color=#5dade2><b>R</b></font>: Review.
+ 	<li>	<font color=#c39bd3><b>C</b></font>: Clinical or randomized Trial.
+ 	<li>	<font color=#7dcea0><b>S</b></font>: Systematic review or meta-analysis.
+ 	</ul>
+<li> 	<b>"Date"</b>: Publication date (year.month). Month="00" when only the publication year is known.
+<li> 	<b>"Title"</b>: Paper title.
+<li> 	<b>"#cit TOT"</b>: Number of citations in PubMed Central.
+<li> 	<b>"cit/year"</b>: Ratio between the number of citations and the
+ 	 number of years since publication.
+<li> <b>	"#cit INT"</b>: Number of "internal" citations (i.e. citations  
+ 	 from other papers within this set).
+<li> 	<b>"Tag"</b>: Tag assigned by the user to the article. See "Tag papers" below. Empty by default.
+<li> <b>"Sel."</b>: Selection. Allows the user to select one or more papers and operate with them. See below.
+</ul>
+<p>
+The table <u>can be sorted</u> by any field clicking the
+corresponding column header (press the header again to reverse the sort order).
+This is useful, for example, to have at the top of the list the highly cited papers, the reviews, the newer articles, ... etc.
+</p>
+
+<h2>DETAILS</h2> <p><i>(top-right)</i></p>
+
+<p>
+This section displays the title and abstract of the selected paper. 
+</p>
+<p>
+<u>Relevant 
+MeSH terms are highlighted</u> coloring them according with the schema speified by the user.
+Additionally generic terms of interest (either belonging to the MeSH vocabulary or not) can be entered dinamically by the user and they will 
+be highlighted in  
+<font color="#a600ff"><b>purple</b></font>. (See "Enter new highlighted terms" below).
+</p>
+<p>
+Although MeSH terms are only associated to PubMed articles, instances of them mentioned in articles from other sources are also
+highlighted. Similarly, for a particular PubMed entry, all mentions in its title/abstract of any MeSH of the whole set 
+are highlighted, irrespective of
+whether they are indexed for that particular article or not.
+</p>
+<p>
+This section also includes at the top the reference and the type of article, as well as the article ID, which is a link
+to the article record in the corresponding database. At the bottom, links to clinical trial databases are included if available, which
+lead to the corresponding record in these databases with all the details on the clinical trial associated to the publication.
+</p>
+<!--	
+Note: the coloring of the terms is meant to include variations of the original mesh or
+user terms (e.g. the word "bacterial" is colored in green, as it contains the mesh term
+"bacteria").
+-->
+
+
+<h2>MeSH TERMS</h2> <p><i>(bottom-left)</i></p>
+
+<p>
+This table contain the whole list of MeSH terms associated to the PubMed articles in the set, as well as the
+terms introduced by the user (See "Enter new highlighted terms" below).
+</p>
+<p>
+Mesh terms are sorted by their frequencies in the set of articles where they are indexed. The user-introduced terms always appear 
+at the top of the table irrespective of their frequencies. For each term, the following information is shown:
+<ul>
+<li>	<b>Mesh term ID</b>, linked to its Entrez page. For user-introduced terms, an internal, 
+	 not linked, ID is generated.
+<li>	<b>Term name</b>, colored according with the criteria described above.
+<li>	<b>Links to other resources</b>, only for <u>microorganisms terms</u>, (link to the
+corresponding NCBI Taxonomy page) and for 
+	<u>chemical compounds terms</u> (links to different databases with chemical information). Empty in other cases.
+<li>	<b>Frequency of the term</b>.
+<li>	<b>List of papers that include this term</b>. Click on [+PMIDs] to display the complete list
+	 and click on [-pmids] to collapse it back. Click in any paper ID from the list to show 
+	 its details in the Details section (see above).
+</ul>
+
+
+<h2>CITATION NETWORK</h2> <p><i>(bottom-right)</i></p>
+
+<p>
+This section shows the network of internal citations between the papers. 
+</p>
+<p>
+Each node represents 
+a paper and each arrow a citation, going from the citing paper to the cited paper.
+Nodes are colored by the number of internal citations received, from <b><font color=#436473>dark blue</font></b> (less) to <b><font color=#ecec00>yellow</font></b>
+(more). Papers that don't participate in any internal citation (either citing or getting 
+cited) are not included in the network. 
+</p>
+<p>Use the mouse wheel to zoom in or out the network. Drag the mouse in the background (outside any node)
+to pan/move the representation.  It is possible to move the nodes to different places dragging them with the mouse. 
+</p>
+<p>
+You can <b>left-click</b> on any node to show the 
+details of the corresponding paper on the Details section (see above). Selected nodes, 
+whose details are shown in the Details Box, 
+are circled in <b><font color=#ff00fb>pink </font></b>. You can <b>right-click</b> on any node 
+to highlight its connections: <b><font color=#00ffc5>blue</font></b> for incoming citations and <b><font color=#ff3030>red</font></b> for 
+outgoing citations. Left-click in any part of the network to undo the highlighting.
+</p>
+
+
+<h1>Operations with articles</h1>
+
+
+<h3>Tag articles</h3>
+<p>
+This functionality allows the user to assign tags to papers. These will be shown in the "Tag" field of the Article List.
+
+To tag papers select one or more items from the Article List by checking the corresponding box(es) in the 
+"Sel." column.  Then you can either tag these articles as important or use custom tags:
+</p>
+<ul>
+<li>	Press <b>"Tag as Imp."</b> to tag  the selected articles as important (<u>Imp.</u>). Rows tagged this way
+	 are highlighted with a green background.
+<li>	Press <b>"Other tags"</b> to use custom tags. You can enter a name for a new tag in the text
+	 box and press the "Tag selection" button to tag selected papers with it. Whenever 
+	 a new tag is added in this way, it appears in the list of previously created tags 
+	 and you can select it and press the bottom "Tag selection" button to reuse
+	 it in forthcoming tag assignments. Press "Clear" to delete the tag list.	 
+<li>	Press <b>"Untag"</b> to delete the tags for the selected papers.
+</ul>
+<p>
+ <b>Note:</b> You can click in the "Tag" header from the papers table to sort the papers by tag.
+</p>
+
+<h3>Delete articles</h3>
+
+<p>
+This tool allows the user to (temporary) remove papers from the Article List. 
+</p>
+<p>
+First, select the
+paper(s) you want to delete by checking the corresponding box(es) in the "Sel." column, and then press
+<b>"Del. selection"</b>. These papers will disappear from the table. To see the list of "deleted" papers, 
+press <b>"Trash->"</b>. In this new table you can
+select deleted papers and press <b>"Undelete selection"</b> to move them back to the
+Article List. Press "<-Return" to leave this deleted papers table and return to the main Article List.
+</p>
+
+<h3>Enter new highlighted terms</h3>
+
+<p>This tool allows the user to enter new terms that will be highlighted in <font color="#a600ff"><b>purple</b></font>. 
+</p>
+<p>
+For that, press
+<b>"Enter new terms"</b> to display a new dialog box and there, write the new terms in the text box.
+You can enter them one by one, pressing "Add" after writing each of the new terms, or 
+you can enter many at once, separated by ";". You can also delete the list of user 
+terms by pressing "Clear". After making all the changes (either adding or deleting), 
+<u><b>you must press "Save changes"</b></u>.
+</p>
+
+<p>
+Any word that contains one of the user terms will be colored in purple. User terms
+must be at least three characters long. Terms written in lower case will match either 
+upper case, lower case or mixed, but terms written in upper case will only match upper 
+case. When entering acronyms, it's recommended to write them in upper case, to avoid 
+unwanted matches (e.g. the term "RNA" should be enter in upper case to avoid matching 
+words that contain "rna" such as "alte<u>rna</u>tive").
+</p>
+<p>
+<b>Note:</b> Make sure your new terms are colored in purple in the "Added" list. If not, you 
+might have forgotten to press "Save changes". 
+</p>
+
+<h3>Save session</h3>
+<p>
+Use your web browser "Save page" functionality to save the current work session as a HTML file in the work folder. 
+Select "web page, HTML only" option if
+available. For example, in Firefox, go to "Menu > Save page as" and make sure the "Web Page, HTML only" option is selected.
+</p>
+<p>
+To recover a saved session, just open the corresponding HTML file.
+</p>
+<hr>
+<h2>Contact</h2>
+For any problem/question, please contact <a href="mailto:jnovoa@cnb.csic.es">jnovoa@cnb.csic.es</a> 
+or <a href="mailto:pazos@cnb.csic.es">pazos@cnb.csic.es</a>
+<hr>
+
+</body>
+</html>
+
+
+

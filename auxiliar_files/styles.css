@@ -1,0 +1,292 @@
+@charset "UTF-8";
+
+body {
+ background:  white;
+	font-family: Sans-serif;
+	font-size: 14px;
+}
+
+a:link {text-decoration: none; color:  #0D3775;}
+a:visited {text-decoration:none;color:  #0D3775;}
+a:active {text-decoration:none;color:  #0D3775;}
+a:hover {text-decoration:none; color:#0000FF ;}
+
+.empty-link {color: #ff0000}
+.empty-link:hover {color: #ff0000}
+
+p, dt
+{
+	  text-align: justify;
+  text-justify: inter-word;
+  font-family: Sans-serif;
+	font-size: 14px;
+	color: #000000;
+	padding-left:0px;
+	padding-right:8px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12;
+}
+
+table.sortable {
+  font-size: 0.75vw;
+}
+
+.list {
+  overflow-y: auto;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 53%;
+  height: 63%;
+  background-color: white;
+}
+
+.mesh { 
+  overflow-y: auto;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  height: 34%;
+  width: 53%;
+  background-color: white;
+}
+
+
+.details {
+  overflow: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 45%;
+  height: 53%;
+  background-color: white;
+   padding-right:5px;
+   padding-left:5px;
+}
+
+
+.network { 
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 44%;
+  width: 45.5%;
+  background-color: white;
+}
+
+div {
+  border: 1px solid black;
+  z-index: -2;
+}
+
+table {
+  margin: 4px;
+  border-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+tr:hover {
+  background-color: #eee;
+}
+
+tr.Imp\.-row {
+  background-color:  #ddfbd2; 
+}
+
+tr.Imp\.-row:hover {
+  background-color:  #cce7c3; 
+}
+
+
+/*
+--NEW--
+*/
+
+button {
+
+}
+
+#tagbuttons {
+  float: left;
+}
+
+#delbuttons { 
+}
+
+#highlightbuttons{
+  float: right;
+}
+
+
+.buttons-box {
+  font-size: 14px;
+  position: sticky;
+  top: 0px;
+  background:   #cccccc;
+  border: none;
+  z-index: 2;
+}
+
+
+#newtermsmenu {
+  text-align: left;
+  position: absolute;
+  visibility: hidden;
+  z-index: 0;
+  background-color: white;
+  top: 30px;
+  right: 0px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+#deleted_papers_div {
+  visibility: hidden;
+  z-index: 0;
+  background-color: white;
+}
+
+#othertagsmenu {
+  position: absolute;
+  visibility: hidden;
+  z-index: 0;
+  background-color: white;
+  top: 30px;
+  left: 1px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+/*
+#othertagsmenu, #newtermsmenu {
+  border: none;
+  background-color: lightblue;
+}
+*/
+
+#Added, #createdtags {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+#newtermsmenu:before {
+    border: 10px solid black;
+    content: '';
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    top: -20px;
+    left: calc(80%);
+    transform: rotate(180deg);
+    pointer-events: none;
+}
+
+#othertagsmenu:before {
+    border: 10px solid black;
+    content: '';
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    top: -20px;
+    left: calc(67% - 0px);
+    transform: rotate(180deg);
+    pointer-events: none;
+}
+
+#chooseLayout {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  background-color:  #cccccc;
+  z-index: 1;
+  border: 1px solid black;
+  
+}
+
+
+@media screen and (max-width: 1750px) {
+  .buttons-box, button {
+    font-size: 12;
+  }
+}
+
+@media screen and (max-width: 1565px) {
+  .buttons-box, button {
+    font-size: 11;
+  }
+  #othertagsmenu:before {
+    left: calc(47% - 0px);
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .buttons-box, button {
+    font-size: 10.2;
+  }
+}
+
+@media screen and (max-width: 1255px) {
+  .buttons-box, button {
+    font-size: 9.6;
+  }
+}
+@media screen and (max-width: 1203px) {
+  #othertagsmenu:before, #newtermsmenu:before {
+    display: none;
+  }
+  #othertagsmenu, #newtermsmenu {
+    top: 65px;
+    left: 0px;
+    right: auto;
+  }
+  #tagbuttons, #delbuttons, #highlightbuttons{
+    width: 100%;
+  }
+  #delbuttons, #highlightbuttons{
+    left: 70px;
+    float: none;
+  }
+  
+}
+
+@media screen and (max-width: 1565px) {
+  .details {
+   width: 44%; 
+  }
+  .network {
+   width: 44.8%;
+  }
+}
+
+@media screen and (max-width: 1136px) {
+  .details {
+   width: 43.2%; 
+  }
+  .network {
+   width: 44%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .mesh {
+   height: 33%; 
+  }
+  .network {
+   height: 43%;
+  }
+}
+
