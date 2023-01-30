@@ -132,7 +132,9 @@ Use the mouse wheel to zoom in or out the network. Drag the mouse in the backgro
 
 You can **left-click** on any node to show the details of the corresponding paper on the Details section (see above). Selected nodes, whose details are shown in the Details Box, are circled in **pink** . You can **right-click** on any node to highlight its connections: **blue** for incoming citations and **red** for outgoing citations. Left-click in any part of the network to undo the highlighting.
 
-It is possible to change the layout of the network (placement of nodes) with the “[+]” menu. Some layouts could slow down the interface when the network is really big.
+It is possible to change the layout of the network (placement of nodes) with the “[+]” menu. Some layouts could slow down the interface when the network is really large.
+
+**Note:** For large networks (>3000 papers) the network won't be shown. 
 
 ## 3.- Operations with articles
 
