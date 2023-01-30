@@ -4,6 +4,8 @@ PMIDigest helps summarizing and digesting large sets of publications from PubMed
 
 From the input set of articles, PMIDigest creates a local .html file that can be interatively visualizal with a web browser.
 
+PMIDigest uses cytoscape.js (https://js.cytoscape.org/) and sorttable.js (https://www.kryogenix.org/code/browser/sorttable/).
+
 ## 1.- How to use PMIDigest? Step by step guide
 
 ### 1.1.- Install PMIDigest on your computer
