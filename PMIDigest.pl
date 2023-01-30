@@ -1,4 +1,5 @@
 use strict;
+use File::Path;
 #use Lingua::EN::Sentence qw( get_sentences add_acronyms );
 
 #
@@ -22,6 +23,7 @@ my $pmid_dir="./PMIDs/";
 my $bindir="./";
 
 my $layoutCutOff = 500;
+my $noNetworkCutOff = 3000;
 my $defaultLayout = "cose_then_cola";
 my $bigLayout = "breadthfirst";
 my @preuterms="";
@@ -81,6 +83,13 @@ my @mtaxid; my @mrr; my @mhierarch;my @mst;
 
 my %utermspmids; my %source;
 
+###Create tmp and PMIDs dir if not existing
+if (!(-d $tmpdir)) {
+	mkdir($tmpdir) or die "**Couldn't create $tmpdir directory, $!";
+}
+if (!(-d $pmid_dir)) {
+	mkdir($pmid_dir) or die "**Couldn't create $pmid_dir directory, $!";
+}
 
 # Options / Maybe remove for CGI (?)
 #fverbose 1 makes the script print process information on the shell
@@ -90,7 +99,7 @@ my @lfiles;
 my $arg_counter=0;
 
 if (@ARGV.length() < 3) {
-	print STDERR "\nERROR: Mandatory arguments are missing.";
+	print STDERR "\n**ERROR: Mandatory arguments are missing.";
 	print STDERR $string_to_STDERR;
 	die;
 }
@@ -112,14 +121,14 @@ my $conf_file = $ARGV[1];
 my $email = $ARGV[2];
 
 if (!($email =~/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/)) {
-	print STDERR "\nERROR, invalid email adress: $email\n";
+	print STDERR "\n**ERROR, invalid email adress: $email\n";
 	print STDERR $string_to_STDERR;
 	exit;
 	}
 
 if($fverbose==1){print STDERR "\n\n";}
 
-open(input_file, "<", $PMIDs_file) or die "Unable to open \"$PMIDs_file\" file";
+open(input_file, "<", $PMIDs_file) or die "**Unable to open \"$PMIDs_file\" file";
 # Reads stdin. Makes an array (@pmids) with the stdin pubmed ids
 while(<input_file>){
 	chop;
@@ -316,6 +325,8 @@ foreach my $pmid (@pmids){
 if (@pmids.length > $layoutCutOff) {
 	$defaultLayout = $bigLayout;
 }
+
+if($fverbose==1){print STDERR "\nBuilding HTML file. This might take some time...";}
 
 
 my $xpmid; my $xsource; my $xyear; my $xtitle; my $xabs; my $xref; my $xauthors; my $xptype; my $xmesh; 
@@ -1030,7 +1041,13 @@ print "</div>\n";
 
 ## --PRINT GRAPH --
 print "\n<div id=\"pmnetwork\" class=\"network\">\n";
-print "<div id=\"chooseLayout\"><b><a onclick=displayLayouts()>[+]</a></b></div>\n";
+
+### only print graph if not too much nodes.
+if (@pmids.length > $noNetworkCutOff) {
+	print "<p class='noNetworkMessage'> Too many nodes to display this network</p>";
+	print "<script>function isThisNode(id) {};var cy = cytoscape();</script>";
+} else {
+	print "<div id=\"chooseLayout\"><b><a onclick=displayLayouts()>[+]</a></b></div>\n";
 print "<script>\n";
 #print "function loadNetwork () {\n";
 print "var cy = cytoscape({
@@ -1228,7 +1245,7 @@ changeLayout ('$defaultLayout');
 \n";
 
 print "</script>";
-
+}###here ends the else 
 
 print "</div>\n";
 
@@ -1238,6 +1255,14 @@ print "</script>\n";
 
 
 print "\n</body>\n</html>\n";
+
+
+###REMOVE tmp directory
+
+
+rmtree( $tmpdir ) or die "Couldn't remove $tmpdir directory, $!";
+
+if($fverbose==1){print STDERR "\n\n";}
 
 exit 0;
 

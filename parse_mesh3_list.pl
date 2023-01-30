@@ -27,7 +27,7 @@ while(<$fp>){chop;if (substr($_, 0, 1) ne "#"){push (@meshcolors,uc($_))}}
 close $fp;
 
 foreach my $file (0..1){
-open my $fp, "<", $ARGV[$file] or die "** Can't r-open '$ARGV[$file]'\n";
+open my $fp, "<", $ARGV[$file] or die "** Can't r-open '$ARGV[$file]'. Make sure you properly downloaded, named and placed mesh database, as described in PMIDigest's README.md \n";
 while(<$fp>){
 	chop;
 	if(substr($_,0,10) eq "*NEWRECORD"){

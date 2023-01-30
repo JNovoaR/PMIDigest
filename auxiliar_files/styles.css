@@ -290,3 +290,6 @@ button {
   }
 }
 
+.noNetworkMessage {
+  margin: 2%;
+}
