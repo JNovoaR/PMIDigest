@@ -62,7 +62,7 @@ This command line will generate this example report http://csbg.cnb.csic.es/jnov
 ### 1.5.- PMIDigest is ready to use
 Open your new HTML file with your web browser of preference and start using it. Go to "2.- Sections" and "3.- Operations with articles" to learn about PMIDigest functionalities.
 
-### 1.6.- Don't forget to save changes.
+### 1.6.- Don't forget to save changes
 Use your web browser "Save page" functionality to save the current work session as a HTML file in the work folder. Select "web page, HTML only" option if available. For example, in Firefox, go to "Menu > Save page as" and make sure the "Web Page, HTML only" option is selected. **Make sure you are saving your .html file inside the PMIDigest folder, as this file requires other files from this folder to work.**
 
 To recover a saved session, just open the corresponding HTML file again.
