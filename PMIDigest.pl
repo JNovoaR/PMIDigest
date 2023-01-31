@@ -16,9 +16,11 @@ For more information of how to run PMIDigest, go to \"README.md\".\n\n
 #
 # Conf stuff
 #
-my $auxiliar_files_dir = "./auxiliar_files";
-my $tmpdir="./tmp/";
 my $procid=$$;
+
+
+my $auxiliar_files_dir = "./auxiliar_files";
+my $tmpdir="./tmp_PIDigest_$procid/";
 my $pmid_dir="./PMIDs/";
 my $bindir="./";
 
@@ -326,7 +328,7 @@ if (@pmids.length > $layoutCutOff) {
 	$defaultLayout = $bigLayout;
 }
 
-if($fverbose==1){print STDERR "\nBuilding HTML file. This might take some time...";}
+if($fverbose==1){print STDERR "\n\nBuilding HTML file. This might take some time...\n";}
 
 
 my $xpmid; my $xsource; my $xyear; my $xtitle; my $xabs; my $xref; my $xauthors; my $xptype; my $xmesh; 
@@ -934,7 +936,7 @@ print "
 
 <div id=\"pm_papers_list\" class=\"list\">
   <div class=\"buttons-box\">
-    <div  id= \"tagbuttons\" style=\"align-self:center; border:none; display: inline-block\">&nbsp;<a href=\"http://csbg.cnb.csic.es/RIMICIA/pdigest_help.html\" target=\"_blank\">[HELP]</a><b> &nbsp;Tag: </b> <button class=\"papers_buttons\" onclick='tagSelection(\"<u>Imp.</u>\")'>Tag as Imp.</button>&nbsp;&nbsp;<button class=\"papers_buttons othertagsbutton\" onclick='displayBlock(\"othertagsmenu\")'>Other tags</button>&nbsp;&nbsp;<button class=\"papers_buttons\" onclick='tagSelection(\"<p style=\\\"font-size:0px\\\">~~~</p>---\")'>Untag</button>&nbsp;&nbsp;</div><div id= \"delbuttons\" style=\"align-self:center; border:none; display: inline-block\"><b>Delete: </b><button class=\"papers_buttons\" onclick='moveRows(\"pm_papers_table\",\"deleted_papers_table\")'>Del. selection</button>  <button class=\"papers_buttons\" onclick='displayBlock(\"deleted_papers_div\")'>Trash-></button></div><div id= \"highlightbuttons\" style=\"align-self:center; border:none; display: inline-block\"><b>Highlight terms: </b>  <button class=\"enterterms\" onclick='displayBlock(\"newtermsmenu\")'>Enter new terms </button></div>
+    <div  id= \"tagbuttons\" style=\"align-self:center; border:none; display: inline-block\">&nbsp;<a href=\"./$auxiliar_files_dir/HELP.html\" target=\"_blank\">[HELP]</a><b> &nbsp;Tag: </b> <button class=\"papers_buttons\" onclick='tagSelection(\"<u>Imp.</u>\")'>Tag as Imp.</button>&nbsp;&nbsp;<button class=\"papers_buttons othertagsbutton\" onclick='displayBlock(\"othertagsmenu\")'>Other tags</button>&nbsp;&nbsp;<button class=\"papers_buttons\" onclick='tagSelection(\"<p style=\\\"font-size:0px\\\">~~~</p>---\")'>Untag</button>&nbsp;&nbsp;</div><div id= \"delbuttons\" style=\"align-self:center; border:none; display: inline-block\"><b>Delete: </b><button class=\"papers_buttons\" onclick='moveRows(\"pm_papers_table\",\"deleted_papers_table\")'>Del. selection</button>  <button class=\"papers_buttons\" onclick='displayBlock(\"deleted_papers_div\")'>Trash-></button></div><div id= \"highlightbuttons\" style=\"align-self:center; border:none; display: inline-block\"><b>Highlight terms: </b>  <button class=\"enterterms\" onclick='displayBlock(\"newtermsmenu\")'>Enter new terms </button></div>
 
       <div id=\"newtermsmenu\" style=\"display: block; visibility: hidden;\">
       <p>To hightlight new terms, enter them in the <br>text box (one by one or separated by \";\") <br>and press \"Add\". <b> Don't forget to press <br>\"Save changes\" when you are done</b>.<br><br> Enter term:</p><input id=\"uterm-text-input\" type=\"text\"><br><br><input type=\"submit\" value=\"Add\" onclick='addTerm(document.getElementById(\"uterm-text-input\").value)'><br><p id=\"Added\"> Added:<br>$added</p>
@@ -1262,7 +1264,7 @@ print "\n</body>\n</html>\n";
 
 rmtree( $tmpdir ) or die "Couldn't remove $tmpdir directory, $!";
 
-if($fverbose==1){print STDERR "\n\n";}
+if($fverbose==1){print STDERR "\n";}
 
 exit 0;
 
