@@ -134,7 +134,7 @@ You can **left-click** on any node to show the details of the corresponding pape
 
 It is possible to change the layout of the network (placement of nodes) with the “[+]” menu. Some layouts could slow down the interface when the network is really large.
 
-**Note:** For large networks (>3000 papers) the network won't be shown. 
+**Note:** For large networks (>3000 papers) the network won't be shown. For networks larger than 500, the default layout will be "breadthfirst" and changing it to "cola" or "cose" could be computationaly demanding.
 
 ## 3.- Operations with articles
 
