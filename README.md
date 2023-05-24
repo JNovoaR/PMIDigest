@@ -6,12 +6,10 @@ From the input set of articles, PMIDigest creates a local .html file that can be
 
 PMIDigest uses cytoscape.js (https://js.cytoscape.org/) and sorttable.js (https://www.kryogenix.org/code/browser/sorttable/).
 
-Please, cite:
-
+Please, cite:\n
 Novoa, J., Chagoyen, M., Benito, C., Moreno, F. J., & Pazos, F. (2023). PMIDigest: Interactive Review of Large Collections of PubMed Entries to Distill Relevant Information. Genes, 14(4), 942. 
 
 Link:
-
 https://doi.org/10.3390/genes14040942
 
 ## 1.- How to use PMIDigest? Step by step guide
